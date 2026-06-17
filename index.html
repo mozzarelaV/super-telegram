@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraBook 3D - Immersive Reading & Creation Studio</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/dashboard.css">
+  <link rel="stylesheet" href="styles/editor.css">
+  <link rel="stylesheet" href="styles/reader.css">
+  <link rel="stylesheet" href="styles/effect.css">
+</head>
+<body>
+
+  <!-- Floating Particles background for premium touch -->
+  <div class="particles-bg">
+    <div class="particle" style="left:10%; width:10px; height:10px; animation-duration:12s; animation-delay:1s;"></div>
+    <div class="particle" style="left:30%; width:6px; height:6px; animation-duration:8s; animation-delay:3s;"></div>
+    <div class="particle" style="left:55%; width:12px; height:12px; animation-duration:15s; animation-delay:0s;"></div>
+    <div class="particle" style="left:75%; width:8px; height:8px; animation-duration:10s; animation-delay:5s;"></div>
+    <div class="particle" style="left:90%; width:15px; height:15px; animation-duration:18s; animation-delay:2s;"></div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="glass">
+    <a href="#" class="logo">
+      AuraBook 3D <span class="logo-dot"></span>
+    </a>
+    <div class="nav-links">
+      <button class="btn btn-secondary" id="btn-import-book">
+        &#128197; Import Book JSON
+      </button>
+      <input type="file" id="input-import-json" accept="application/json" style="display:none;">
+      <button class="btn btn-primary" id="btn-new-book">
+        + Create New Book
+      </button>
+    </div>
+  </header>
+
+  <!-- SPA Views -->
+  <main>
+    
+    <!-- 1. DASHBOARD VIEW -->
+    <div id="view-dashboard" class="dashboard">
+      
+      <!-- Hero Section -->
+      <section class="hero glass-card">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+          <div class="hero-subtitle">The Future of Digital Books</div>
+          <h1>Read and Create Books in 3D Depth</h1>
+          <p class="hero-desc">
+            Experience books like never before. Renders pages in highly interactive WebGL 3D, supports vertical scroll webtoons, horizontal pan strips, and lets you transform images with dynamic shaders, sketches, and paintable 3D depth-parallax maps.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="btn-hero-new-book">Create Your First Book</button>
+            <a href="#book-grid" class="btn btn-secondary">Explore Library</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Library Grid Header -->
+      <div class="section-header">
+        <h2>Your Library Collection</h2>
+        <div class="dashboard-controls">
+          <!-- Optional filters or sorting can be placed here -->
+        </div>
+      </div>
+
+      <!-- Book Cards Grid -->
+      <div class="book-grid" id="book-grid">
+        <!-- Rendered dynamically -->
+      </div>
+      
+    </div>
+
+    <!-- 2. CREATOR/EDITOR VIEW -->
+    <div id="view-creator" style="display: none;">
+      <!-- Creator interface injected dynamically by js/editor/creator.js -->
+    </div>
+
+  </main>
+
+  <!-- Global Toast Alerts -->
+  <div class="toast-container" id="global-toast-container"></div>
+
+  <!-- Three.js Library & OrbitControls CDNs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- Main JavaScript Bootstrap -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "aurabook-3d",
+  "version": "1.0.0",
+  "description": "3D Immersive Book Reading and Creation Studio",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  }
+}

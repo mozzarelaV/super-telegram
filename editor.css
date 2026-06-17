@@ -1,0 +1,403 @@
+/* ==========================================================================
+   AuraBook 3D - Creator/Editor Styles
+   ========================================================================== */
+
+.editor-container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  height: calc(100vh - 72px); /* Subtract header height */
+  overflow: hidden;
+}
+
+/* Side Panel - Metadata & Pages List */
+.editor-sidebar {
+  border-right: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-secondary);
+  overflow-y: auto;
+}
+
+.sidebar-section {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.sidebar-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* Inputs styling */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  transition: var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--glow-indigo);
+}
+
+/* Pages Timeline List */
+.pages-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.timeline-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.timeline-item.active {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--color-primary);
+}
+
+.timeline-thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  background: var(--bg-tertiary);
+  object-fit: cover;
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.timeline-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.timeline-number {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.timeline-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.timeline-delete {
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  padding: 0.25rem;
+}
+
+.timeline-delete:hover {
+  color: var(--color-error);
+}
+
+/* Main Workspace */
+.editor-workspace {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-primary);
+}
+
+/* Workspace Header bar */
+.workspace-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--glass-border);
+  background: var(--bg-secondary);
+}
+
+.workspace-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Workspace Canvas/Page editing area */
+.workspace-content {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  overflow: hidden;
+}
+
+.canvas-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: auto;
+  position: relative;
+  background: radial-gradient(circle, #0e0e15 0%, #07070a 100%);
+}
+
+.page-stage {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 3/4;
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  background: #fff;
+  color: #333;
+  overflow: hidden;
+  position: relative;
+  transition: var(--transition-normal);
+}
+
+/* When image is loaded */
+.page-stage.has-image {
+  background: #000;
+}
+
+.stage-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.stage-placeholder i {
+  font-size: 3rem;
+  color: var(--text-muted);
+}
+
+.stage-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.stage-text-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 1rem;
+  font-size: 0.9rem;
+  backdrop-filter: blur(5px);
+  max-height: 40%;
+  overflow-y: auto;
+}
+
+/* Page Control Sidebar (filters & effects) */
+.page-controls-sidebar {
+  border-left: 1px solid var(--glass-border);
+  background: var(--bg-secondary);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.filter-item {
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--glass-border);
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.filter-item:hover {
+  border-color: var(--color-primary);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.filter-item.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--glow-indigo);
+}
+
+/* Depth Painter Overlay Workspace */
+.depth-painter-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  z-index: 15;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+}
+
+.painter-header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.painter-body {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  overflow: hidden;
+}
+
+.painter-canvas-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  position: relative;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.painter-canvas-wrapper {
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.painter-base-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.painter-draw-canvas {
+  position: relative;
+  z-index: 2;
+  cursor: crosshair;
+}
+
+.painter-controls {
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--glass-border);
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+
+.brush-preview {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;
+  margin: 1rem auto;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.slider-group {
+  margin-bottom: 1.25rem;
+}
+
+.slider-group label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.slider-group input[type="range"] {
+  width: 100%;
+  accent-color: var(--color-primary);
+}
+
+.color-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.color-swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.color-swatch:hover, .color-swatch.active {
+  transform: scale(1.15);
+  border-color: #fff;
+}
+
+.depth-tips {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  background: rgba(255,255,255,0.02);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--glass-border);
+}

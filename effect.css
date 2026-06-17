@@ -1,0 +1,105 @@
+/* ==========================================================================
+   AuraBook 3D - Specialized Image Effects & Filters CSS
+   ========================================================================== */
+
+/* Neon Accents and Glows */
+.neon-text-indigo {
+  color: #a5b4fc;
+  text-shadow: 0 0 10px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.neon-text-cyan {
+  color: #e0f7fa;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.neon-text-fuchsia {
+  color: #fdf4ff;
+  text-shadow: 0 0 10px rgba(217, 70, 239, 0.5), 0 0 20px rgba(217, 70, 239, 0.3);
+}
+
+/* Glitch Animation Keyframes (CSS counterpart for interactive glitch) */
+@keyframes cssGlitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: skew(0.3deg);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: skew(-0.5deg);
+  }
+  40% {
+    clip-path: inset(15% 0 80% 0);
+    transform: skew(0.8deg);
+  }
+  60% {
+    clip-path: inset(80% 0 5% 0);
+    transform: skew(-0.2deg);
+  }
+  80% {
+    clip-path: inset(3% 0 92% 0);
+    transform: skew(0.4deg);
+  }
+  100% {
+    clip-path: inset(40% 0 61% 0);
+    transform: skew(0deg);
+  }
+}
+
+.css-glitch-active {
+  animation: cssGlitch 1s infinite linear alternate-reverse;
+  position: relative;
+}
+
+/* Floating particles background for premium presentation */
+.particles-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: floatUp 8s infinite linear;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(105vh) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-5vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* 3D tilt interaction class */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.tilt-inner {
+  transform: translateZ(30px);
+  transition: transform 0.1s ease;
+}
+
+/* Parallax Depth Map Preview Container */
+.depth-preview-stage {
+  border: 1px solid var(--color-accent);
+  box-shadow: var(--glow-cyan);
+}

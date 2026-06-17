@@ -1,0 +1,383 @@
+/* ==========================================================================
+   AuraBook 3D - Reader Layouts & Overlay Styles
+   ========================================================================== */
+
+.reader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #050508;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Reader Toolbar (Top) */
+.reader-toolbar {
+  height: 60px;
+  background: rgba(15, 15, 22, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  z-index: 10;
+}
+
+.reader-title-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.reader-book-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.reader-chapter-title {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.reader-layout-selector {
+  display: flex;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.layout-tab {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  color: var(--text-secondary);
+}
+
+.layout-tab:hover {
+  color: var(--text-primary);
+}
+
+.layout-tab.active {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.reader-close {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.reader-close:hover {
+  color: var(--color-error);
+  transform: scale(1.1);
+}
+
+/* Reader Core Canvas/Viewport Area */
+.reader-viewport {
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* 3D WebGL Canvas */
+.canvas-3d-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+}
+
+.canvas-3d-container:active {
+  cursor: grabbing;
+}
+
+/* Webgl Parallax Container */
+.parallax-canvas-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 2D Reader Viewports */
+.reader-viewport-2d {
+  width: 100%;
+  height: 100%;
+  display: none;
+  overflow: auto;
+}
+
+.reader-viewport-2d.active {
+  display: block;
+}
+
+/* 1. Webtoon Mode Layout (Vertical Scroll) */
+.webtoon-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+.webtoon-page {
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  position: relative;
+  background: #000;
+  font-size: 0;
+}
+
+.webtoon-image-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.webtoon-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.webtoon-text {
+  background: #fff;
+  color: #222;
+  padding: 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  border-radius: var(--radius-md);
+}
+
+/* 2. Horizontal Webtoon Layout (Horizontal Strip) */
+.webtoon-h-layout {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 2rem;
+  gap: 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.webtoon-h-page {
+  display: inline-block;
+  height: 100%;
+  max-height: calc(100vh - 160px);
+  aspect-ratio: 3/4;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--glass-border);
+  background: #000;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+}
+
+.webtoon-h-image {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.webtoon-h-text {
+  height: 100%;
+  width: 500px;
+  background: #fff;
+  color: #222;
+  padding: 3rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  white-space: normal;
+  overflow-y: auto;
+  border-radius: var(--radius-md);
+}
+
+/* 3. Horizontal Book Layout (Traditional Slider) */
+.book-h-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+  padding: 3rem;
+}
+
+.book-h-pages-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  max-height: calc(100vh - 180px);
+  position: relative;
+}
+
+.book-h-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: scale(0.95);
+}
+
+.book-h-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.book-h-page-leaf {
+  width: 45%;
+  max-width: 500px;
+  height: 100%;
+  background: #fff;
+  color: #222;
+  border-radius: var(--radius-md);
+  box-shadow: 5px 15px 35px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.book-h-page-leaf.has-image {
+  background: #000;
+}
+
+.book-h-page-leaf img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.book-h-page-leaf .leaf-text {
+  padding: 2.5rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Nav Arrows for Book Slide */
+.slide-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(15, 15, 22, 0.8);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 5;
+  transition: var(--transition-fast);
+}
+
+.slide-arrow:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: var(--glow-indigo);
+}
+
+.arrow-prev {
+  left: 2rem;
+}
+
+.arrow-next {
+  right: 2rem;
+}
+
+/* Page Navigation Slider Bar (Bottom) */
+.reader-bottom-nav {
+  height: 60px;
+  background: rgba(15, 15, 22, 0.85);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  z-index: 10;
+}
+
+.nav-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.progress-slider {
+  flex-grow: 1;
+  accent-color: var(--color-primary);
+  height: 4px;
+  cursor: pointer;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-weight: 600;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* Help tips overlay inside reader */
+.reader-help-tip {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  pointer-events: none;
+  animation: fadeOutHelp 5s forwards;
+  z-index: 10;
+}
+
+@keyframes fadeOutHelp {
+  0% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { opacity: 0; visibility: hidden; }
+}
